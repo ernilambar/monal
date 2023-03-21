@@ -7,7 +7,7 @@ const CopyPlugin = require( 'copy-webpack-plugin' );
 module.exports = {
 	...defaultConfig,
 	entry: {
-		'monal': path.resolve( __dirname, 'resources', 'monal.js' ),
+		monal: path.resolve( __dirname, 'resources', 'monal.js' ),
 	},
 	output: {
 		path: path.resolve( __dirname, 'assets' ),
@@ -15,10 +15,10 @@ module.exports = {
 	},
 	plugins: [
 		...defaultConfig.plugins,
-		new CopyPlugin({
-      patterns: [
-        { from: './resources/img', to: './img' }
-      ]
-    }),
+		new CopyPlugin( {
+			patterns: [
+				{ from: './resources/img', to: './img' },
+			],
+		} ),
 	],
 };

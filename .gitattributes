@@ -1,0 +1,12 @@
+resources/ export-ignore
+languages/ export-ignore
+.npmrc export-ignore
+.editorconfig export-ignore
+.eslintignore export-ignore
+.eslintrc.json export-ignore
+.gitattributes export-ignore
+.prettierignore export-ignore
+easy-replace-in-files.json export-ignore
+package.json export-ignore
+pnpm-lock.yaml export-ignore
+webpack.config.js export-ignore
