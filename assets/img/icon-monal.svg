@@ -1,0 +1,12 @@
+<svg width="560" height="434" viewBox="0 0 560 434" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
+        <g transform="translate(-116.000000, -249.000000)" fill="currentColor">
+            <g id="Group" transform="translate(116.333000, 249.884000)">
+                <polyline points="2.84217094e-14 432.296 51.952 432.296 51.952 122.646 2.84217094e-14 92.647 2.84217094e-14 432.296"></polyline>
+                <polyline points="507.395 29.993 279.673 161.465 5.68434189e-14 0 5.68434189e-14 59.986 279.673 221.458 559.347 59.986 559.347 0 507.395 29.993"></polyline>
+                <polyline points="359.91 207.795 279.673 254.119 80.236 138.976 80.236 432.296 132.188 432.296 132.188 228.957 279.673 314.105 427.158 228.957 427.158 432.296 479.11 432.296 479.11 138.976 359.91 207.795"></polyline>
+                <polyline points="507.395 432.296 559.347 432.296 559.347 92.647 507.395 122.646 507.395 432.296"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

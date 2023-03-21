@@ -1,0 +1,23 @@
+{
+	"name"        : "ernilambar/monal",
+	"description" : "WordPress Theme Onboarding Library.",
+	"keywords"    : [ "onboarding", "wordpress" ],
+	"homepage"    : "https://github.com/ernilambar/monal",
+	"license"     : "GPL-3.0+",
+	"authors"     : [
+		{
+			"name"     : "Nilambar Sharma",
+			"email"    : "nilambar@outlook.com",
+			"homepage" : "https://www.nilambar.net",
+			"role"     : "Developer"
+		}
+	],
+	"support"     : {
+		"issues" : "https://github.com/ernilambar/monal/issues"
+	},
+	"require"     : {
+		"php" : ">=5.6",
+		"proteusthemes/wp-content-importer-v2": "^2.1.0",
+    "monolog/monolog": "^1.27"
+	}
+}
