@@ -17,10 +17,7 @@ const Monal = ( function( $ ) {
 
 	function window_loaded() {
 		const body 		= $( '.monal__body' );
-		const body_loading 	= $( '.monal__body--loading' );
-		const body_exiting 	= $( '.monal__body--exiting' );
 		const drawer_trigger 	= $( '#monal__drawer-trigger' );
-		const drawer_opening 	= 'monal__drawer--opening';
 		const drawer_opened 	= 'monal__drawer--open';
 
 		setTimeout( function() {
@@ -126,7 +123,7 @@ const Monal = ( function( $ ) {
 				if ( typeof response.done !== 'undefined' && response.done ) {
 					find_next();
 				} else if ( typeof response.url !== 'undefined' ) {
-					// we have an ajax url action to perform.
+					// We have an ajax url action to perform.
 					if ( response.hash === current_item_hash ) {
 						currentSpan.removeClass( 'installing success' ).addClass( 'error' );
 						find_next();
@@ -135,7 +132,7 @@ const Monal = ( function( $ ) {
 						jQuery.post( response.url, response, ajax_callback ).fail( ajax_callback );
 					}
 				} else {
-					// error processing this plugin
+					// Error processing this plugin.
 					find_next();
 				}
 			} else {
@@ -182,7 +179,7 @@ const Monal = ( function( $ ) {
 				return false;
 			} );
 			if ( items_completed >= $li.length ) {
-				// finished all plugins!
+				// Finished all plugins!
 				complete();
 			}
 		}
@@ -221,8 +218,6 @@ const Monal = ( function( $ ) {
 		let total_content_import_items = 0;
 		let progress_bar_interval;
 
-		const drawer_opened 	= 'monal__drawer--open';
-
 		function ajax_callback( response ) {
 			const currentSpan = $current_node.find( 'label' );
 			if ( typeof response === 'object' && typeof response.message !== 'undefined' ) {
@@ -234,7 +229,7 @@ const Monal = ( function( $ ) {
 				}
 
 				if ( typeof response.url !== 'undefined' ) {
-					// we have an ajax url action to perform.
+					// We have an ajax url action to perform.
 					if ( response.hash === current_item_hash ) {
 						currentSpan.addClass( 'status--failed' );
 						find_next();
@@ -246,17 +241,17 @@ const Monal = ( function( $ ) {
 							response.selected_index = $( '.js-monal-demo-import-select' ).val() || 0;
 						}
 
-						jQuery.post( response.url, response, ajax_callback ).fail( ajax_callback ); // recuurrssionnnnn
+						jQuery.post( response.url, response, ajax_callback ).fail( ajax_callback );
 					}
 				} else if ( typeof response.done !== 'undefined' ) {
-					// finished processing this plugin, move onto next
+					// Finished processing this plugin, move onto next.
 					find_next();
 				} else {
-					// error processing this plugin
+					// Error processing this plugin.
 					find_next();
 				}
 			} else {
-				// error - try again with next plugin
+				// Error - try again with next plugin.
 				currentSpan.addClass( 'status--error' );
 				find_next();
 			}
@@ -281,6 +276,7 @@ const Monal = ( function( $ ) {
 
 		function find_next() {
 			let do_next = false;
+
 			if ( $current_node ) {
 				if ( ! $current_node.data( 'done_item' ) ) {
 					items_completed++;
@@ -288,8 +284,9 @@ const Monal = ( function( $ ) {
 				}
 				$current_node.find( '.spinner' ).css( 'visibility', 'hidden' );
 			}
+
 			const $items = $( '.monal__drawer--import-content__list-item' );
-			const $enabled_items = $( '.monal__drawer--import-content__list-item input:checked' );
+
 			$items.each( function() {
 				if ( current_item === '' || do_next ) {
 					current_item = $( this ).data( 'content' );
