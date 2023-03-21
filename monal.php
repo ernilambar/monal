@@ -951,13 +951,6 @@ class Monal {
 		$screenshot = $this->get_default_screenshot_url();
 		?>
 
-		<style>
-			.monal__content-link {
-				margin-top: 5px;
-				margin-bottom: 15px;
-			}
-		</style>
-
 		<div class="monal__content--transition">
 
 			<?php if ( 0 !== strlen( $screenshot ) ) : ?>

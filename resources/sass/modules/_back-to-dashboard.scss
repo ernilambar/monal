@@ -7,7 +7,7 @@
 	padding-bottom: 0;
 	text-align: center;
 	text-decoration: none;
-	transition: color 150ms ease, opacity 300ms cubic-bezier(.694, 0, .335, 1) 150ms;
+	transition: color 150ms ease, opacity 300ms cubic-bezier(0.694, 0, 0.335, 1) 150ms;
 
 	// Applies styles when Reduced Motion is enabled
 	@media screen and (prefers-reduced-motion: reduce) {
@@ -23,7 +23,7 @@
 	}
 
 	&.ignore {
-		margin-top: .3em;
+		margin-top: 0.3em;
 		padding: 0;
 	}
 

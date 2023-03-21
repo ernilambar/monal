@@ -13,7 +13,7 @@
 	text-align: center;
 	text-decoration: none;
 	transform: translate3d(0, 0, 0);
-	transition: color 150ms cubic-bezier(.694, 0, .335, 1), background 150ms cubic-bezier(.694, 0, .335, 1);
+	transition: color 150ms cubic-bezier(0.694, 0, 0.335, 1), background 150ms cubic-bezier(0.694, 0, 0.335, 1);
 
 	// Applies styles when Reduced Motion is enabled
 	@media screen and (prefers-reduced-motion: reduce) {
@@ -24,6 +24,7 @@
 		background: $button--hover;
 
 		.chevron {
+
 			&::after,
 			&::before {
 				background: $blue;
@@ -120,7 +121,7 @@
 		}
 
 		& &__text {
-			transition: opacity 400ms cubic-bezier(.18, 1, .21, 1) 400ms, filter 4100ms cubic-bezier(.18, 1, .21, 1);
+			transition: opacity 400ms cubic-bezier(0.18, 1, 0.21, 1) 400ms, filter 4100ms cubic-bezier(0.18, 1, 0.21, 1);
 		}
 
 		&__spinner {
@@ -131,7 +132,7 @@
 			top: 50%;
 			margin-top: -11px;
 			transform: scale(0);
-			transition: opacity 100ms ease, transform 600ms cubic-bezier(.18, 1, .21, 1) 200ms;
+			transition: opacity 100ms ease, transform 600ms cubic-bezier(0.18, 1, 0.21, 1) 200ms;
 		}
 
 		& &__text {
@@ -149,7 +150,7 @@
 		content: "➝";
 		display: inline-block !important;
 		font-size: 1em;
-		margin-top: .05em;
+		margin-top: 0.05em;
 		opacity: 0;
 		padding-left: 0.25em;
 		position: absolute;

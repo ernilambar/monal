@@ -1,5 +1,4 @@
 @import "variables";
-
 @import "mixins";
 
 .monal__body {
@@ -54,6 +53,7 @@ p.success {
 
 
 @keyframes vanishIn {
+
 	0% {
 		opacity: 0;
 		transform-origin: 50% 50%;
@@ -65,13 +65,15 @@ p.success {
 		opacity: 1;
 		transform-origin: 50% 50%;
 		transform: scale(1, 1);
-		filter: blur(0px);
+		filter: blur(0);
 	}
 }
 
 // Applies styles when Reduced Motion is enabled
 @media screen and (prefers-reduced-motion: reduce) {
+
 	@keyframes vanishIn {
+
 		0% {
 			opacity: 0;
 		}
@@ -83,11 +85,12 @@ p.success {
 }
 
 @keyframes vanishOut {
+
 	0% {
 		opacity: 1;
 		transform-origin: 50% 50%;
 		transform: scale(1, 1);
-		filter: blur(0px);
+		filter: blur(0);
 	}
 
 	100% {
@@ -100,7 +103,9 @@ p.success {
 
 // Applies styles when Reduced Motion is enabled
 @media screen and (prefers-reduced-motion: reduce) {
+
 	@keyframes vanishOut {
+
 		0% {
 			opacity: 1;
 		}
@@ -112,47 +117,25 @@ p.success {
 }
 
 @import "modules/hidden";
-
 @import "modules/huh";
-
-@import "modules/branding";
-
 @import "modules/steps";
-
 @import "modules/icons";
-
 @import "modules/content";
-
 @import "modules/buttons";
-
 @import "modules/colorchange";
-
 @import "modules/chevron";
-
 @import "modules/spinner";
-
 @import "modules/tooltip";
-
 @import "modules/back-to-dashboard";
-
 @import "modules/drawer";
-
 @import "modules/drawer-import-content";
-
 @import "modules/drawer-install-plugins";
-
 @import "modules/drawer-more-info";
-
 @import "modules/checkmark";
-
 @import "modules/footer";
-
 @import "modules/progress-bar";
-
 @import "modules/screenshot";
-
 @import "modules/multi-demo-import-controls";
-
 @import "view/welcome";
 @import "view/plugins";
 @import "view/content";

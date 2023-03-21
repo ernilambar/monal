@@ -15,7 +15,7 @@
 	}
 
 	.monal__content--content & {
-		transition: opacity $speed cubic-bezier(.694, 0, .335, 1);
+		transition: opacity $speed cubic-bezier(0.694, 0, 0.335, 1);
 	}
 
 	body.exiting .monal__content--content & {
@@ -30,11 +30,11 @@
 	display: inline-block;
 	background: $dotsBackground;
 	border-radius: 999px;
-	margin: 0 .01em;
+	margin: 0 0.01em;
 	position: relative;
-	top: -.15em;
+	top: -0.15em;
 	z-index: 9999;
-	transition: background 300ms cubic-bezier(.694, 0, .335, 1);
+	transition: background 300ms cubic-bezier(0.694, 0, 0.335, 1);
 }
 
 .dots li.done {
@@ -55,15 +55,15 @@
 .dots li.active::after {
 	animation: sonarEffect 400ms ease-out 300ms;
 	border-radius: 999px;
-	content: '';
+	content: "";
 	display: inline-block;
 	height: 8px;
 	left: -0.037778em;
 	position: absolute;
-	transition: box-shadow 300ms cubic-bezier(.694, 0, .335, 1);
+	transition: box-shadow 300ms cubic-bezier(0.694, 0, 0.335, 1);
 	width: 8px;
 	z-index: -1;
-	top: -.05em;
+	top: -0.05em;
 
 	// Applies styles when Reduced Motion is enabled
 	@media screen and (prefers-reduced-motion: reduce) {
@@ -72,43 +72,53 @@
 }
 
 @keyframes sonarEffect {
-    0% {
-        opacity: 1;
-    }
-    40% {
-        opacity: 0.5;
-        box-shadow: 0 0 0 1px lighten($blue, 50%);
-    }
-    100% {
-        box-shadow: 0 0 0 1px lighten($blue, 50%);
-        transform: scale(1.6);
-        opacity: 0;
-    }
+
+	0% {
+		opacity: 1;
+	}
+
+	40% {
+		opacity: 0.5;
+		box-shadow: 0 0 0 1px lighten($blue, 50%);
+	}
+
+	100% {
+		box-shadow: 0 0 0 1px lighten($blue, 50%);
+		transform: scale(1.6);
+		opacity: 0;
+	}
 }
 
 @keyframes popIn {
+
 	0% {
 		background: #e3e3e3;
 	}
+
 	40% {
-    }
+	}
+
 	55% {
 		background: #e3e3e3;
 		transform: scale(1);
 
 	}
+
 	65% {
 		transform: scale(1.6);
 		background: #0073aa;
 	}
+
 	85% {
 		transform: scale(0.8);
 		background: #0073aa;
 	}
+
 	95% {
 		transform: scale(1.2);
 		background: #0073aa;
 	}
+
 	100% {
 		transform: scale(1);
 		background: #0073aa;
