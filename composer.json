@@ -18,6 +18,6 @@
 	"require"     : {
 		"php" : ">=5.6",
 		"proteusthemes/wp-content-importer-v2": "^2.1.0",
-    "monolog/monolog": "^1.27"
+    "monolog/monolog": "1.27.1"
 	}
 }
