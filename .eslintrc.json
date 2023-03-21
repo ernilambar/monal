@@ -14,8 +14,9 @@
     "jQuery": true
   },
   "rules": {
-    "no-console": "warn",
-    "no-alert": "warn",
+    "camelcase": "off",
+    "no-console": "off",
+    "no-alert": "off",
     "vars-on-top": "warn"
   }
 }
