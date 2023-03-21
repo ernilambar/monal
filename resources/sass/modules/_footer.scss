@@ -1,4 +1,5 @@
 .monal__content__footer {
+
 	@include clearfix();
 	clear: both;
 	margin-top: 2.75em;
@@ -8,7 +9,7 @@
 		opacity: 0;
 		transform-origin: top;
 		transform: translateX(50%);
-		transition: transform $speed cubic-bezier(.694, 0, .335, 1), opacity $speed cubic-bezier(.694, 0, .335, 1), filter $speed cubic-bezier(.694, 0, .335, 1);
+		transition: transform $speed cubic-bezier(0.694, 0, 0.335, 1), opacity $speed cubic-bezier(0.694, 0, 0.335, 1), filter $speed cubic-bezier(0.694, 0, 0.335, 1);
 
 		// Applies styles when Reduced Motion is enabled
 		@media screen and (prefers-reduced-motion: reduce) {
@@ -28,12 +29,12 @@
 		margin-bottom: 3.14em;
 
 		.monal__button {
-			margin-top: .57em;
+			margin-top: 0.57em;
 		}
 	}
 
 	.monal__content--license & {
-		margin-top: -.24em;
+		margin-top: -0.24em;
 	}
 
 	.monal__content--ready & {
@@ -45,7 +46,7 @@
 	}
 
 	.monal__content--content & {
-		transition: opacity $speed cubic-bezier(.694, 0, .335, 1);
+		transition: opacity $speed cubic-bezier(0.694, 0, 0.335, 1);
 	}
 
 	body.exiting .monal__content--content & {

@@ -12,6 +12,7 @@
 		padding: 2px 30px;
 
 		&:hover {
+
 			span {
 				color: $blue;
 			}
@@ -56,10 +57,10 @@
 			position: relative;
 			text-align: left;
 			transform-origin: center;
-			transition: border-color 100ms, background-color 100ms, transform 350ms cubic-bezier(.78,-1.22,.17,1.89);
+			transition: border-color 100ms, background-color 100ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
 			width: 13px;
 
-			&:before {
+			&::before {
 				background: $blue;
 				border-radius: 2px;
 				content: "";
@@ -70,10 +71,10 @@
 				transform-origin: 0% 0%;
 				transform: rotate(45deg);
 				transition: width 50ms ease 50ms;
-				width: 0px;
+				width: 0;
 			}
 
-			&:after {
+			&::after {
 				background: $blue;
 				border-radius: 2px;
 				content: "";
@@ -89,6 +90,7 @@
 		}
 
 		&:hover {
+
 			i {
 				border-color: $blue;
 			}

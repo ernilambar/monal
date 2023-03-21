@@ -17,7 +17,7 @@
 		cursor: pointer;
 		display: block;
 		font-size: 13px;
-		font-weight: normal;
+		font-weight: 400;
 		height: 27px;
 		line-height: 1;
 		margin: 0;
@@ -39,7 +39,7 @@
 	}
 
 	&__demo-import-preview {
-		width: calc( 100% - 20px );
+		width: calc(100% - 20px);
 		margin: 20px 0;
 		background-color: #f1f1f1;
 		padding: 10px;

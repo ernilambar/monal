@@ -1,20 +1,23 @@
 @mixin font-smoothing {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
 }
 
 @mixin clearfix() {
-    & {
-	*zoom: 1;
-    }
-    &:before,
-    &:after {
-        content: "";
-        display: table;
-    }
-    &:after {
-        clear: both;
-    }
+
+	& {
+		*zoom: 1;
+	}
+
+	&::before,
+	&::after {
+		content: "";
+		display: table;
+	}
+
+	&::after {
+		clear: both;
+	}
 }
 
 /// Hides an element visually while still allowing the content to be accessible
@@ -59,21 +62,22 @@
 ///     width: auto;
 ///   }
 @mixin hide($toggle: hide) {
-  @if $toggle == "hide" {
-    border: 0;
-    clip: rect(1px, 1px, 1px, 1px);
-    clip-path: circle(1% at 1% 1%);
-    height: 1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-  } @else if $toggle == "unhide" {
-    clip: auto;
-    clip-path: none;
-    height: auto;
-    overflow: visible;
-    position: static;
-    width: auto;
-  }
+
+	@if $toggle == "hide" {
+		border: 0;
+		clip: rect(1px, 1px, 1px, 1px);
+		clip-path: circle(1% at 1% 1%);
+		height: 1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+	} @else if $toggle == "unhide" {
+		clip: auto;
+		clip-path: none;
+		height: auto;
+		overflow: visible;
+		position: static;
+		width: auto;
+	}
 }
