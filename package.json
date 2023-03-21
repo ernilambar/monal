@@ -1,0 +1,27 @@
+{
+  "name": "monal",
+  "title": "Monal",
+  "version": "1.0.0",
+  "main_file": "monal.php",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "dev": "wp-scripts start",
+    "build": "wp-scripts build",
+    "lint:css": "wp-scripts lint-style 'resources/**/*.{css,scss}'",
+    "lint:css:fix": "wp-scripts lint-style 'resources/**/*.{css,scss}' --fix",
+    "lint:js": "wp-scripts lint-js ./resources webpack.config.js",
+    "lint:js:fix": "wp-scripts lint-js ./resources webpack.config.js --fix",
+    "preinstall": "npx only-allow pnpm",
+    "textdomain": "wpi18n addtextdomain --exclude=vendor,deploy,node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ernilambar/monal"
+  },
+  "browserslist": "> 1%, not dead",
+  "devDependencies": {
+    "@wordpress/scripts": "^26.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "node-wp-i18n": "^1.2.7"
+  }
+}
