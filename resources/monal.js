@@ -80,7 +80,11 @@ const Monal = ( function( $ ) {
 				preview_url = placeholderImage;
 			}
 
-			$( '.js-content-preview-billboard' ).find( 'img' ).attr( 'src', preview_url );
+			const $billboardImage = $( '.js-content-preview-billboard' ).find( 'img' );
+
+			$billboardImage.fadeTo( 100, 0.30, function () {
+				$billboardImage.attr( 'src', preview_url  );
+			} ).fadeTo( 300, 1 );
 
 			$( '.js-monal-select-spinner' ).show();
 
