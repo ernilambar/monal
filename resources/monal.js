@@ -146,6 +146,9 @@ const Monal = ( function( $ ) {
 				success: function(resp){
 					if ( true === resp.success ) {
 						handleFreemiusMessage('Theme activated successfully', 'success');
+						setTimeout( function() {
+							window.location.href = $activateButton.attr('href');
+						}, 500 );
 					} else {
 						handleFreemiusMessage(resp.error, 'error');
 					}
