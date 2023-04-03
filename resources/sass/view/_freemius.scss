@@ -1,0 +1,28 @@
+.monal__content--freemius {
+
+	.monal__icon svg {
+		max-width: 100px;
+	}
+}
+
+.monal__content--license-key {
+	margin-top: 20px;
+
+	input {
+		width: 100%;
+		padding: 4px 6px;
+	}
+}
+
+.monal__content-billboard {
+	margin-block: 10px;
+	display: none;
+}
+
+.monal__content-billboard-success {
+	color: #0eb540;
+}
+
+.monal__content-billboard-error {
+	color: #d92511;
+}

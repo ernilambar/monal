@@ -95,6 +95,27 @@ class Monal {
 	public $import_file_base_name;
 
 	/**
+	 * Freemius object.
+	 *
+	 * @var Freemius
+	 */
+	protected $freemius;
+
+	/**
+	 * Freemius module ID.
+	 *
+	 * @var int
+	 */
+	protected $freemius_module_id;
+
+	/**
+	 * Freemius status.
+	 *
+	 * @var bool
+	 */
+	protected $freemius_activated;
+
+	/**
 	 * Helper.
 	 *
 	 * @var array
@@ -186,6 +207,7 @@ class Monal {
 				'page_slug'            => 'monal',
 				'ready_extra_links'    => array(),
 				'explore_url'          => '',
+				'freemius_module_id'   => '',
 			)
 		);
 
@@ -201,6 +223,15 @@ class Monal {
 
 		// Completed option key.
 		$this->completed_option_key = 'monal_' . $this->slug . '_completed';
+
+		// Freemius ID.
+		$this->freemius_module_id = absint( $config['freemius_module_id'] );
+
+		if ( $this->freemius_module_id > 0 ) {
+			$this->freemius = freemius( $this->freemius_module_id );
+
+			$this->freemius_activated = $this->freemius->can_use_premium_code();
+		}
 
 		// Set config arguments.
 		$this->parent_slug          = $config['parent_slug'];
@@ -223,6 +254,12 @@ class Monal {
 				'welcome'                => esc_html__( 'This wizard will set up your theme, install plugins, and import content. It is optional & should take only a few minutes.', 'monal' ),
 				'welcome-success'        => esc_html__( 'You may have already run this theme setup wizard. If you would like to proceed anyway, click on the "Start" button below.', 'monal' ),
 
+				/* translators: Theme Name */
+				'freemius-header'         => sprintf( esc_html__( 'Activate %s', 'monal' ), esc_html( $this->theme_name ) ),
+				'freemius-header-success' => sprintf( esc_html__( '%s is activated.', 'monal' ), esc_html( $this->theme_name ) ),
+				'freemius'                => esc_html__( 'Activate your license key to enable remote updates and theme support.', 'monal' ),
+				'freemius-success'        => esc_html__( 'The theme is already registered, so you can go to the next step!', 'monal' ),
+
 				'plugins-header'         => esc_html__( 'Install Plugins', 'monal' ),
 				'plugins-header-success' => esc_html__( 'You\'re up to speed!', 'monal' ),
 				'plugins'                => esc_html__( 'Let\'s install some essential WordPress plugins to get your site up to speed.', 'monal' ),
@@ -241,6 +278,7 @@ class Monal {
 				'btn-plugins-install'    => esc_html__( 'Install', 'monal' ),
 				'btn-content-install'    => esc_html__( 'Install', 'monal' ),
 				'btn-import'             => esc_html__( 'Import', 'monal' ),
+				'btn-freemius-activate'  => esc_html__( 'Activate', 'monal' ),
 
 				'ready-header'           => esc_html__( 'All done. Have fun!', 'monal' ),
 				/* translators: Theme Author */
@@ -265,7 +303,7 @@ class Monal {
 		}
 
 		add_action( 'admin_init', array( $this, 'required_classes' ) );
-		add_action( 'admin_init', array( $this, 'steps' ), 30, 0 );
+		add_action( 'admin_init', array( $this, 'setup_steps' ), 30, 0 );
 		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'admin_page' ), 30, 0 );
 		add_filter( 'tgmpa_load', array( $this, 'load_tgmpa' ), 10, 1 );
@@ -413,6 +451,15 @@ class Monal {
 			'import_files' => $this->import_files,
 			'base_url'     => $this->config['base_url'],
 		);
+
+		// If Freemius enabled.
+		if ( $this->freemius_module_id > 0 ) {
+			$localized_data['freemius_ajaxurl'] = admin_url( 'admin-ajax.php?_fs_blog_admin=true' );
+
+			$fs = freemius( $this->freemius_module_id );
+
+			$localized_data['freemius_security'] = $fs->get_ajax_security( 'activate_license' );
+		}
 
 		// Check if TMGPA is included.
 		if ( class_exists( 'TGM_Plugin_Activation', false ) ) {
@@ -578,7 +625,7 @@ class Monal {
 	 *
 	 * @since 1.0.0
 	 */
-	public function steps() {
+	public function setup_steps() {
 		$this->steps = array(
 			'welcome' => array(
 				'name'    => esc_html__( 'Welcome', 'monal' ),
@@ -586,6 +633,14 @@ class Monal {
 				'handler' => array( $this, 'welcome_handler' ),
 			),
 		);
+
+		// Enable Freemius view if Freemius ID is provided.
+		if ( $this->freemius_module_id > 0 ) {
+			$this->steps['freemius'] = array(
+				'name' => esc_html__( 'Freemius', 'monal' ),
+				'view' => array( $this, 'freemius' ),
+			);
+		}
 
 		// Show the plugin importer, only if TGMPA is included.
 		if ( class_exists( 'TGM_Plugin_Activation', false ) ) {
@@ -738,6 +793,62 @@ class Monal {
 
 		<?php
 		$this->logger->debug( __( 'The welcome step has been displayed', 'monal' ) );
+	}
+
+	/**
+	 * Freemius step.
+	 *
+	 * @since 1.0.0
+	 */
+	protected function freemius() {
+		// Strings passed in from the config file.
+		$strings = $this->strings;
+
+		$header    = $this->freemius_activated ? $strings['freemius-header-success'] : $strings['freemius-header'];
+		$paragraph = $this->freemius_activated ? $strings['freemius-success'] : $strings['freemius'];
+		$skip      = $strings['btn-skip'];
+		$next      = $strings['btn-next'];
+		$activate  = $strings['btn-freemius-activate'];
+		?>
+		<div class="monal__content--transition">
+
+			<div class="monal__icon">
+				<?php echo $this->get_svg( 'icon-freemius' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</div><!-- .monal__icon -->
+
+			<h1><?php echo esc_html( $header ); ?></h1>
+
+			<p><?php echo esc_html( $paragraph ); ?></p>
+
+			<?php if ( true !== $this->freemius_activated ) : ?>
+				<div class="monal__content--license-key">
+					<input type="text" placeholder="License key" class="js-freemius-license-key" />
+				</div><!-- .monal__content--license-key -->
+
+				<div class="monal__content-billboard monal__content-billboard-success">
+					<p class="monal__content-billboard-text"></p>
+				</div><!-- .monal__content-billboard -->
+			<?php endif; ?>
+		</div>
+
+		<footer class="monal__content__footer">
+
+			<?php if ( true !== $this->freemius_activated ) : ?>
+				<a id="skip" href="<?php echo esc_url( $this->step_next_link() ); ?>" class="monal__button monal__button--skip"><?php echo esc_html( $skip ); ?></a>
+
+				<a id="activate" href="<?php echo esc_url( $this->step_next_link() ); ?>" class="monal__button monal__button--next js-monal-freemius-activate-button" data-module-id="<?php echo esc_attr( $this->freemius_module_id ); ?>">
+					<span class="monal__button--loading__text"><?php echo esc_html( $activate ); ?></span>
+					<?php $this->render_loading_spinner(); ?>
+				</a>
+
+			<?php else : ?>
+
+				<a href="<?php echo esc_url( $this->step_next_link() ); ?>" class="monal__button monal__button--next"><?php echo esc_html( $next ); ?></a>
+
+			<?php endif; ?>
+
+		</footer><!-- .monal__content__footer -->
+		<?php
 	}
 
 	/**
