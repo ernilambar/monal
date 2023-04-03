@@ -178,7 +178,7 @@ class Monal {
 	 */
 	private function version() {
 		if ( ! defined( 'MONAL_VERSION' ) ) {
-			define( 'MONAL_VERSION', '1.0.0' );
+			define( 'MONAL_VERSION', '1.0.1' );
 		}
 	}
 
@@ -207,7 +207,7 @@ class Monal {
 				'page_slug'            => 'monal',
 				'ready_extra_links'    => array(),
 				'explore_url'          => '',
-				'freemius_module_id'   => '',
+				'freemius_module_id'   => 0,
 			)
 		);
 

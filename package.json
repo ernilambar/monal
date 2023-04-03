@@ -1,7 +1,7 @@
 {
   "name": "monal",
   "title": "Monal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main_file": "monal.php",
   "license": "GPL-3.0-or-later",
   "scripts": {
@@ -20,7 +20,7 @@
   },
   "browserslist": "> 1%, not dead",
   "devDependencies": {
-    "@wordpress/scripts": "^26.0.0",
+    "@wordpress/scripts": "^26.1.0",
     "copy-webpack-plugin": "^11.0.0",
     "node-wp-i18n": "^1.2.7"
   }
