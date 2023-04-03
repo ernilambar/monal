@@ -106,6 +106,58 @@ const Monal = ( function( $ ) {
 					alert( MONAL_LOCALIZED.texts.something_went_wrong );
 				} );
 		} );
+
+		const handleFreemiusMessage = ( message, mode = 'success' ) => {
+			const $billboard = $('.monal__content-billboard').hide();
+
+			$billboard.removeClass('monal__content-billboard-success').remove('monal__content-billboard-error');
+			$billboard.addClass(`monal__content-billboard-${mode}`);
+			$billboard.find('.monal__content-billboard-text').text( message );
+			$billboard.fadeIn();
+		}
+
+		// Validate Freemius activation.
+		$('.js-monal-freemius-activate-button').on('click', function(e){
+			e.preventDefault();
+			const $activateButton = $(this);
+			const moduleId = $(this).data('module-id');
+			const licenseKey = $( '.js-freemius-license-key' ).val();
+
+			if ( 0 === licenseKey.length ) {
+				handleFreemiusMessage('Please enter license key.', 'error');
+				return;
+			}
+
+			const ajaxData = {
+				'action' : `fs_activate_license_${moduleId}`,
+				'security' : MONAL_LOCALIZED.freemius_security,
+				'license_key' : $( '.js-freemius-license-key' ).val(),
+				'module_id' : moduleId,
+			};
+
+			$.ajax({
+				type: "POST",
+				url: MONAL_LOCALIZED.freemius_ajaxurl,
+				data: ajaxData,
+				dataType: 'json',
+				beforeSend: function(){
+					$activateButton.addClass('monal__button--loading');
+				},
+				success: function(resp){
+					if ( true === resp.success ) {
+						handleFreemiusMessage('Theme activated successfully', 'success');
+					} else {
+						handleFreemiusMessage(resp.error, 'error');
+					}
+				},
+				error: function(){
+					handleFreemiusMessage('Some error occurred.', 'error');
+				},
+				complete: function(){
+					$activateButton.removeClass('monal__button--loading');
+				}
+			});
+		})
 	}
 
 	function PluginManager() {
