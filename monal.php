@@ -178,7 +178,7 @@ class Monal {
 	 */
 	private function version() {
 		if ( ! defined( 'MONAL_VERSION' ) ) {
-			define( 'MONAL_VERSION', '1.0.1' );
+			define( 'MONAL_VERSION', '1.0.2' );
 		}
 	}
 
