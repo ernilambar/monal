@@ -528,7 +528,6 @@ class Monal {
 			<title><?php echo esc_html( $this->strings['page-title'] ); ?></title>
 			<?php do_action( 'admin_print_styles' ); ?>
 			<?php do_action( 'admin_print_scripts' ); ?>
-			<?php do_action( 'admin_head' ); ?>
 		</head>
 		<body class="monal__body monal__body--<?php echo esc_attr( $current_step ); ?>">
 		<?php
@@ -551,6 +550,7 @@ class Monal {
 	protected function footer() {
 		?>
 		</body>
+		<?php remove_action( 'admin_footer', 'gutenberg_block_editor_admin_footer' ); ?>
 		<?php do_action( 'admin_footer' ); ?>
 		<?php do_action( 'admin_print_footer_scripts' ); ?>
 		</html>
