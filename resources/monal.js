@@ -82,8 +82,8 @@ const Monal = ( function( $ ) {
 
 			const $billboardImage = $( '.js-content-preview-billboard' ).find( 'img' );
 
-			$billboardImage.fadeTo( 100, 0.30, function () {
-				$billboardImage.attr( 'src', preview_url  );
+			$billboardImage.fadeTo( 100, 0.30, function() {
+				$billboardImage.attr( 'src', preview_url );
 			} ).fadeTo( 300, 1 );
 
 			$( '.js-monal-select-spinner' ).show();
@@ -108,59 +108,59 @@ const Monal = ( function( $ ) {
 		} );
 
 		const handleFreemiusMessage = ( message, mode = 'success' ) => {
-			const $billboard = $('.monal__content-billboard').hide();
+			const $billboard = $( '.monal__content-billboard' ).hide();
 
-			$billboard.removeClass('monal__content-billboard-success').remove('monal__content-billboard-error');
-			$billboard.addClass(`monal__content-billboard-${mode}`);
-			$billboard.find('.monal__content-billboard-text').text( message );
+			$billboard.removeClass( 'monal__content-billboard-success' ).remove( 'monal__content-billboard-error' );
+			$billboard.addClass( `monal__content-billboard-${ mode }` );
+			$billboard.find( '.monal__content-billboard-text' ).text( message );
 			$billboard.fadeIn();
-		}
+		};
 
 		// Validate Freemius activation.
-		$('.js-monal-freemius-activate-button').on('click', function(e){
+		$( '.js-monal-freemius-activate-button' ).on( 'click', function( e ) {
 			e.preventDefault();
-			const $activateButton = $(this);
-			const moduleId = $(this).data('module-id');
+			const $activateButton = $( this );
+			const moduleId = $( this ).data( 'module-id' );
 			const licenseKey = $( '.js-freemius-license-key' ).val();
 
 			if ( 0 === licenseKey.length ) {
-				handleFreemiusMessage('Please enter license key.', 'error');
+				handleFreemiusMessage( 'Please enter license key.', 'error' );
 				return;
 			}
 
 			const ajaxData = {
-				'action' : `fs_activate_license_${moduleId}`,
-				'security' : MONAL_LOCALIZED.freemius_security,
-				'license_key' : $( '.js-freemius-license-key' ).val(),
-				'module_id' : moduleId,
+				action: `fs_activate_license_${ moduleId }`,
+				security: MONAL_LOCALIZED.freemius_security,
+				license_key: $( '.js-freemius-license-key' ).val(),
+				module_id: moduleId,
 			};
 
-			$.ajax({
-				type: "POST",
+			$.ajax( {
+				type: 'POST',
 				url: MONAL_LOCALIZED.freemius_ajaxurl,
 				data: ajaxData,
 				dataType: 'json',
-				beforeSend: function(){
-					$activateButton.addClass('monal__button--loading');
+				beforeSend() {
+					$activateButton.addClass( 'monal__button--loading' );
 				},
-				success: function(resp){
+				success( resp ) {
 					if ( true === resp.success ) {
-						handleFreemiusMessage('Theme activated successfully', 'success');
+						handleFreemiusMessage( 'Theme activated successfully', 'success' );
 						setTimeout( function() {
-							window.location.href = $activateButton.attr('href');
+							window.location.href = $activateButton.attr( 'href' );
 						}, 500 );
 					} else {
-						handleFreemiusMessage(resp.error, 'error');
+						handleFreemiusMessage( resp.error, 'error' );
 					}
 				},
-				error: function(){
-					handleFreemiusMessage('Some error occurred.', 'error');
+				error() {
+					handleFreemiusMessage( 'Some error occurred.', 'error' );
 				},
-				complete: function(){
-					$activateButton.removeClass('monal__button--loading');
-				}
-			});
-		})
+				complete() {
+					$activateButton.removeClass( 'monal__button--loading' );
+				},
+			} );
+		} );
 	}
 
 	function PluginManager() {
