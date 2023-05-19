@@ -18,5 +18,10 @@
 	"require"     : {
 		"php" : ">=5.6",
 		"proteusthemes/wp-content-importer-v2": "^2.1"
+	},
+	"autoload": {
+		"files": [
+			"monal.php"
+		]
 	}
 }
