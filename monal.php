@@ -180,7 +180,7 @@ if ( ! class_exists( 'Monal', false ) ) {
 		 */
 		private function version() {
 			if ( ! defined( 'MONAL_VERSION' ) ) {
-				define( 'MONAL_VERSION', '1.0.2' );
+				define( 'MONAL_VERSION', '1.0.3' );
 			}
 		}
 

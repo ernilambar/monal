@@ -1,7 +1,7 @@
 {
   "name": "monal",
   "title": "Monal",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main_file": "monal.php",
   "license": "GPL-3.0-or-later",
   "scripts": {
